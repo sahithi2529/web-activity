@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Library Management System</title>
+
+<style>
+/* GENERAL STYLING */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4f7f6;
+    color: #263238;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    background: #12372a;
+    color: white;
+    padding: 25px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    color: #a8e6cf;
+    font-size: 28px;
+}
+
+header p {
+    font-size: 14px;
+}
+
+/* NAVIGATION */
+nav {
+    background: #205c43;
+    padding: 15px 8%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #a8e6cf;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, #12372a, #39845e);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+    animation: fadeIn 1.2s ease;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto 25px;
+}
+
+.hero a {
+    display: inline-block;
+    background: #a8e6cf;
+    color: #12372a;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero a:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+/* COMMON SECTION */
+section {
+    padding: 55px 8%;
+    scroll-margin-top: 65px;
+}
+
+.section-title {
+    text-align: center;
+    color: #12372a;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.section-title span {
+    color: #39845e;
+}
+
+/* SEARCH AND FILTER */
+.search-area {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #d5e2da;
+}
+
+.search-area form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search-area input,
+.search-area select {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px;
+    border: 1px solid #b7cfc0;
+    border-radius: 6px;
+    outline: none;
+}
+
+.search-area input:focus,
+.search-area select:focus {
+    border-color: #39845e;
+}
+
+.search-area button {
+    padding: 12px 22px;
+    border: none;
+    background: #205c43;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.search-area button:hover {
+    background: #12372a;
+}
+
+/* CATEGORY CARDS */
+#categories {
+    background: #e6f2ea;
+}
+
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    background: white;
+    text-align: center;
+    padding: 25px 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #cfddd3;
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-7px);
+    background: #f4fff8;
+}
+
+.category-card .icon {
+    font-size: 38px;
+}
+
+.category-card h3 {
+    color: #205c43;
+    margin: 10px 0;
+}
+
+/* FEATURED BOOKS */
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.book-card {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #d5e2da;
+    transition: 0.3s;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px #c1d5c8;
+}
+
+.book-cover {
+    height: 180px;
+    width: 125px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px 12px 12px 4px;
+    box-shadow: 5px 5px 8px #aab9ae;
+}
+
+.cover-one {
+    background: linear-gradient(135deg, #243b55, #141e30);
+}
+
+.cover-two {
+    background: linear-gradient(135deg, #8e44ad, #512e5f);
+}
+
+.cover-three {
+    background: linear-gradient(135deg, #d35400, #7e5109);
+}
+
+.cover-four {
+    background: linear-gradient(135deg, #117864, #0b5345);
+}
+
+.book-card h3 {
+    color: #205c43;
+    margin-bottom: 5px;
+}
+
+.book-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.available {
+    background: #d5f5e3;
+    color: #196f3d;
+}
+
+.unavailable {
+    background: #fadbd8;
+    color: #922b21;
+}
+
+/* CATALOG TABLE */
+#catalog {
+    background: #e6f2ea;
+}
+
+.table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px #d5e2da;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #dce6df;
+}
+
+th {
+    background: #205c43;
+    color: white;
+}
+
+tr:hover td {
+    background: #f0faf3;
+}
+
+/* LIBRARY RULES */
+.rules-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.rule {
+    background: white;
+    padding: 20px;
+    border-left: 5px solid #39845e;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px #d5e2da;
+}
+
+.rule h3 {
+    color: #205c43;
+    margin-bottom: 8px;
+}
+
+/* LIBRARY INFORMATION */
+.info {
+    background: #12372a;
+    color: white;
+    text-align: center;
+}
+
+.info h2 {
+    color: #a8e6cf;
+    margin-bottom: 15px;
+}
+
+.info p {
+    margin: 8px;
+}
+
+/* FOOTER */
+footer {
+    background: #0b241a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 950px) {
+    .book-container,
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    .hero h2 {
+        font-size: 27px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .book-container,
+    .category-container,
+    .rules-container {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 40px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div>
+        <h1>📚 Digital Library</h1>
+        <p>Your gateway to knowledge and learning</p>
+    </div>
+    <p>Read • Learn • Grow</p>
+</header>
+
+<!-- NAVIGATION BAR -->
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#catalog">Catalog</a></li>
+        <li><a href="#rules">Rules</a></li>
+    </ul>
+</nav>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <h2>Welcome to Our Digital Library</h2>
+    <p>
+        Discover books, explore new subjects, improve your knowledge,
+        and enjoy a wonderful reading experience through our library interface.
+    </p>
+    <a href="#books">Explore Books</a>
+</section>
+
+<!-- SEARCH -->
+<section id="search">
+    <h2 class="section-title">Search and <span>Filter Books</span></h2>
+    <div class="search-area">
+        <form action="#catalog" method="get">
+            <input type="search" name="book"
+                   placeholder="Enter book title or author">
+            <select name="category">
+                <option value="">All Categories</option>
+                <option value="programming">Programming</option>
+                <option value="science">Science</option>
+                <option value="literature">Literature</option>
+                <option value="mathematics">Mathematics</option>
+            </select>
+            <select name="availability">
+                <option value="">All Availability</option>
+                <option value="available">Available</option>
+                <option value="unavailable">Issued</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <p>Use the fields above to enter your search preferences.</p>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+    <h2 class="section-title">Book <span>Categories</span></h2>
+    <div class="category-container">
+        <div class="category-card">
+            <div class="icon">💻</div>
+            <h3>Programming</h3>
+            <p>Learn coding and software development.</p>
+        </div>
+        <div class="category-card">
+            <div class="icon">🔬</div>
+            <h3>Science</h3>
+            <p>Explore scientific ideas and discoveries.</p>
+        </div>
+        <div class="category-card">
+            <div class="icon">📖</div>
+            <h3>Literature</h3>
+            <p>Enjoy stories, novels and poetry.</p>
+        </div>
+        <div class="category-card">
+            <div class="icon">📐</div>
+            <h3>Mathematics</h3>
+            <p>Study mathematical concepts and problems.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED BOOKS -->
+<section id="books">
+    <h2 class="section-title">Featured <span>Books</span></h2>
+    <div class="book-container">
+
+        <div class="book-card">
+            <div class="book-cover cover-one">PYTHON PROGRAMMING</div>
+            <h3>Python Basics</h3>
+            <p>Author: John Smith</p>
+            <p>Category: Programming</p>
+            <p>Book ID: B101</p>
+            <span class="status available">Available</span>
+        </div>
+
+        <div class="book-card">
+            <div class="book-cover cover-two">SCIENCE TODAY</div>
+            <h3>Modern Science</h3>
+            <p>Author: David Miller</p>
+            <p>Category: Science</p>
+            <p>Book ID: B102</p>
+            <span class="status unavailable">Issued</span>
+        </div>
+
+        <div class="book-card">
+            <div class="book-cover cover-three">WORLD LITERATURE</div>
+            <h3>Classic Stories</h3>
+            <p>Author: Jane Brown</p>
+            <p>Category: Literature</p>
+            <p>Book ID: B103</p>
+            <span class="status available">Available</span>
+        </div>
+
+        <div class="book-card">
+            <div class="book-cover cover-four">MATHEMATICS</div>
+            <h3>Basic Mathematics</h3>
+            <p>Author: Robert Wilson</p>
+            <p>Category: Mathematics</p>
+            <p>Book ID: B104</p>
+            <span class="status available">Available</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- CATALOG TABLE -->
+<section id="catalog">
+    <h2 class="section-title">Library <span>Catalog</span></h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>B101</td>
+                    <td>Python Basics</td>
+                    <td>John Smith</td>
+                    <td>Programming</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td>B102</td>
+                    <td>Modern Science</td>
+                    <td>David Miller</td>
+                    <td>Science</td>
+                    <td><span class="status unavailable">Issued</span></td>
+                </tr>
+                <tr>
+                    <td>B103</td>
+                    <td>Classic Stories</td>
+                    <td>Jane Brown</td>
+                    <td>Literature</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td>B104</td>
+                    <td>Basic Mathematics</td>
+                    <td>Robert Wilson</td>
+                    <td>Mathematics</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- LIBRARY RULES -->
+<section id="rules">
+    <h2 class="section-title">Library <span>Rules</span></h2>
+    <div class="rules-container">
+        <div class="rule">
+            <h3>📅 Borrowing Period</h3>
+            <p>Return borrowed books within the permitted borrowing period.</p>
+        </div>
+        <div class="rule">
+            <h3>🤫 Maintain Silence</h3>
+            <p>Keep the library quiet and respect other readers.</p>
+        </div>
+        <div class="rule">
+            <h3>📚 Handle Books Carefully</h3>
+            <p>Do not damage, mark or tear library books.</p>
+        </div>
+        <div class="rule">
+            <h3>⏰ Return Books on Time</h3>
+            <p>Late returns may be subject to the library's fine policy.</p>
+        </div>
+    </div>
+</section>
+
+<!-- LIBRARY INFORMATION -->
+<section class="info">
+    <h2>About Our Library</h2>
+    <p>Our goal is to make knowledge accessible to every learner.</p>
+    <p>Email: library@example.com</p>
+    <p>Opening Hours: Monday - Saturday, 9:00 AM - 5:00 PM</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Digital Library Management System</p>
+    <p>Designed using HTML and CSS only.</p>
+</footer>
+
+</body>
+</html>

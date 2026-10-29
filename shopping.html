@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEasy - Online Shopping</title>
+
+<style>
+/* GENERAL STYLING */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #222;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HEADER */
+header {
+    background: #172554;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #facc15;
+}
+
+.search-box {
+    padding: 10px;
+    width: 220px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-button {
+    background: #facc15;
+    color: #172554;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* NAVIGATION */
+nav {
+    background: #1e40af;
+    padding: 12px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 18px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+nav a:hover {
+    color: #facc15;
+}
+
+/* PROMOTIONAL BANNER */
+.banner {
+    background: linear-gradient(120deg, #2563eb, #7c3aed);
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.banner h1 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.banner-button {
+    display: inline-block;
+    background: #facc15;
+    color: #172554;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* SECTION TITLES */
+.section-title {
+    font-size: 28px;
+    color: #172554;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+/* CATEGORIES */
+.categories {
+    padding: 30px 6%;
+    text-align: center;
+}
+
+.category-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.category {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #00000012;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.category:hover {
+    background: #dbeafe;
+    transform: translateY(-4px);
+}
+
+/* PRODUCT GRID */
+.products {
+    padding: 25px 6% 45px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+/* PRODUCT CARDS */
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 12px #00000012;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px #00000020;
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    padding: 15px;
+    background: #f8fafc;
+}
+
+.product-card h3 {
+    color: #172554;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.description {
+    color: #666;
+    font-size: 13px;
+    padding: 0 12px;
+    min-height: 42px;
+}
+
+.rating {
+    color: #d97706;
+    margin: 8px 0;
+}
+
+.price {
+    color: #15803d;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.old-price {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.discount {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 8px;
+}
+
+/* SHOPPING BUTTONS */
+.product-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 8px;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 9px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cart-btn {
+    background: #1e40af;
+    color: white;
+}
+
+.buy-btn {
+    background: #facc15;
+    color: #172554;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* CUSTOMER SERVICES */
+.services {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px 6%;
+    background: #dbeafe;
+    text-align: center;
+}
+
+.service h3 {
+    color: #172554;
+    margin-bottom: 5px;
+}
+
+/* FOOTER */
+footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+footer p {
+    margin: 5px;
+    font-size: 14px;
+}
+
+.footer-links {
+    margin: 12px 0;
+}
+
+.footer-links a {
+    color: #facc15;
+    margin: 0 10px;
+}
+
+/* TABLET RESPONSIVENESS */
+@media (max-width: 1000px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 750px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    nav a {
+        margin: 5px 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box {
+        width: 180px;
+    }
+
+    .banner h1 {
+        font-size: 25px;
+    }
+
+    .section-title {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header id="home">
+    <div class="logo">ShopEasy 🛍️</div>
+
+    <div>
+        <input type="text" class="search-box"
+               placeholder="Search products...">
+        <button class="search-button">Search</button>
+    </div>
+
+    <div>👤 Account | 🛒 Cart</div>
+</header>
+
+<!-- NAVIGATION BAR -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#products">Products</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- PROMOTIONAL BANNER -->
+<section class="banner">
+    <h1>Big Shopping Days!</h1>
+    <p>Discover amazing products at exciting prices.</p>
+    <p><strong>Up to 50% OFF</strong> on selected products!</p>
+    <a href="#products" class="banner-button">Shop Now</a>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+    <h2 class="section-title">Shop by Category</h2>
+
+    <div class="category-list">
+        <a href="#products" class="category">📱 Electronics</a>
+        <a href="#products" class="category">👕 Fashion</a>
+        <a href="#products" class="category">📚 Books</a>
+        <a href="#products" class="category">⌚ Accessories</a>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+    <h2 class="section-title">Featured Products</h2>
+
+    <div class="product-grid">
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/e0f2fe/172554?text=Headphones"
+                 alt="Wireless headphones">
+            <h3>Wireless Headphones</h3>
+            <p class="description">Clear sound and comfortable listening.</p>
+            <p class="rating">★★★★☆ (4.2/5)</p>
+            <p class="price">₹1,499 <span class="old-price">₹2,499</span></p>
+            <span class="discount">40% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/fef3c7/172554?text=Smart+Watch"
+                 alt="Smart watch">
+            <h3>Smart Watch</h3>
+            <p class="description">Track your daily activities easily.</p>
+            <p class="rating">★★★★★ (4.5/5)</p>
+            <p class="price">₹1,999 <span class="old-price">₹3,499</span></p>
+            <span class="discount">43% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/fce7f3/172554?text=Backpack"
+                 alt="College backpack">
+            <h3>College Backpack</h3>
+            <p class="description">Stylish and spacious bag for students.</p>
+            <p class="rating">★★★★☆ (4.1/5)</p>
+            <p class="price">₹799 <span class="old-price">₹1,199</span></p>
+            <span class="discount">33% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/dcfce7/172554?text=Sneakers"
+                 alt="Casual sneakers">
+            <h3>Casual Sneakers</h3>
+            <p class="description">Comfortable footwear for everyday use.</p>
+            <p class="rating">★★★★★ (4.6/5)</p>
+            <p class="price">₹1,299 <span class="old-price">₹1,999</span></p>
+            <span class="discount">35% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/ede9fe/172554?text=Study+Books"
+                 alt="Study books">
+            <h3>Study Book Set</h3>
+            <p class="description">Useful books for learning and revision.</p>
+            <p class="rating">★★★★☆ (4.3/5)</p>
+            <p class="price">₹599 <span class="old-price">₹899</span></p>
+            <span class="discount">33% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/ffedd5/172554?text=Speaker"
+                 alt="Bluetooth speaker">
+            <h3>Bluetooth Speaker</h3>
+            <p class="description">Portable speaker with rich sound.</p>
+            <p class="rating">★★★★☆ (4.4/5)</p>
+            <p class="price">₹999 <span class="old-price">₹1,799</span></p>
+            <span class="discount">44% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/dbeafe/172554?text=Keyboard"
+                 alt="Computer keyboard">
+            <h3>Computer Keyboard</h3>
+            <p class="description">A practical keyboard for study and work.</p>
+            <p class="rating">★★★★☆ (4.0/5)</p>
+            <p class="price">₹699 <span class="old-price">₹999</span></p>
+            <span class="discount">30% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <img src="https://placehold.co/300x200/f3e8ff/172554?text=Water+Bottle"
+                 alt="Reusable water bottle">
+            <h3>Water Bottle</h3>
+            <p class="description">Reusable bottle for college and travel.</p>
+            <p class="rating">★★★★★ (4.7/5)</p>
+            <p class="price">₹399 <span class="old-price">₹599</span></p>
+            <span class="discount">33% OFF</span>
+            <div class="product-actions">
+                <button class="btn cart-btn">Add to Cart</button>
+                <button class="btn buy-btn">Buy Now</button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- CUSTOMER SERVICES -->
+<section class="services" id="services">
+    <div class="service">
+        <h3>🚚 Free Delivery</h3>
+        <p>On eligible orders</p>
+    </div>
+
+    <div class="service">
+        <h3>🔒 Secure Shopping</h3>
+        <p>Your privacy matters</p>
+    </div>
+
+    <div class="service">
+        <h3>↩️ Easy Returns</h3>
+        <p>Simple return process</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+    <h2>ShopEasy</h2>
+    <p>Your favourite online shopping destination.</p>
+
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <p>Email: support@shopeasy.example</p>
+    <p>Phone: +91 98765 43210</p>
+    <p>&copy; 2026 ShopEasy. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
